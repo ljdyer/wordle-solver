@@ -10,21 +10,25 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 
-    render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/go')
 def go():
     
+    print('YO!')
     gChromeOptions = webdriver.ChromeOptions()
     gChromeOptions.add_argument("window-size=1920x1480")
     gChromeOptions.add_argument("disable-dev-shm-usage")
     gDriver = webdriver.Chrome(
         chrome_options=gChromeOptions, executable_path=ChromeDriverManager().install()
     )
+    gDriver.minimize_window()
+    gDriver.maximize_window()
     gDriver.get("https://www.python.org/")
-    time.sleep(3)
+    gDriver.switch_to.window(gDriver.current_window_handle)
+    time.sleep(10)
     gDriver.close()
-    return jsonify("DONE.")
+    return (jsonify("DONE."))
 
 # ====================
 if __name__ == "__main__":

@@ -3,8 +3,6 @@
         <p>
             Watch the wizard go!
         </p>
-        <script>
-            fetch('/go', { method: "POST" })
-        </script>
+        <button type="button" onclick="window.location.href='{{ url_for( 'go') }}';">Forward</button>
     </body>
 </html>
