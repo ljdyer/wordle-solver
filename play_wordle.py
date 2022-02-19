@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
+from wordle_solver import WordleGame
+import traceback
 
 WORDLE_HOME = 'https://www.nytimes.com/games/wordle/index.html'
 ENTER_KEY = '↵'
@@ -9,6 +11,7 @@ ENTER_KEY = '↵'
 # ====================
 def play_wordle(driver):
 
+    # Get ready to play in browser window
     driver.get(WORDLE_HOME)
     sleep(1)
     agree_cookies(driver)
@@ -16,9 +19,19 @@ def play_wordle(driver):
     close_instructions(driver)
     sleep(0.5)
     keyboard = get_keyboard(driver)
-    guess_word(keyboard, 'SHITE')
-    sleep(3)
-    print(get_row_result(driver, 0))
+
+    # Start the game simulator
+    this_game = WordleGame()
+    guesses_so_far = 0
+
+    while not this_game.solved:
+        suggestion = this_game.get_suggestion()
+        guess_word(keyboard, suggestion)
+        sleep(3)
+        result = get_row_result(driver, guesses_so_far)
+        this_game.update(suggestion, result)
+        guesses_so_far += 1
+    sleep(10)
 
 
 # ======================
@@ -118,7 +131,7 @@ if __name__ == "__main__":
         play_wordle(driver)
     except Exception as e:
         print('The following exception occured:')
-        print(e)
+        print(traceback.format_exc())
         quit()
     else:
         print('the program terminated normally.')
