@@ -17,8 +17,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 WORDLE_HOME = 'https://www.nytimes.com/games/wordle/index.html'
 ENTER_KEY = '↵'
 ACCEPT_COOKIES_XPATH = '//*[@id="pz-gdpr-btn-accept"]'
-DEFAULT_WAIT_AFTER_KEY_PRESS = 0.5
-DEFAULT_WAIT_AFTER_ENTER_WORD = 2.5
+DEFAULT_WAIT_AFTER_KEY_PRESS = 0.25
+DEFAULT_WAIT_AFTER_ENTER_WORD = 2
 
 
 class WordleController:
@@ -70,6 +70,8 @@ class WordleController:
 
         options = webdriver.ChromeOptions()
         options.add_argument("--start-maximized")
+        options.add_argument("log-level=3")
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
         self.driver = webdriver.Chrome('./chromedriver', options=options)
 
     # ====================
@@ -185,3 +187,4 @@ class WordleController:
 
         self.driver.quit()
         print('Driver terminated.')
+        print()
