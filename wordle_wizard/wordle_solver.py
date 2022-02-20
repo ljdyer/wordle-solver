@@ -1,9 +1,30 @@
+"""
+wordle_solver.py
+
+Defines a class WordleGame that decides which word to guess next in a game
+of Wordle based on probabilities of each letter occuring in each position.
+"""
+
 from words import ALL_WORDS
-import string
+from collections import Counter
 
 
 # ====================
 class WordleGame:
+
+    """
+    A class to represent a smart AI playing a game of Wordle.
+
+    Methods:
+
+        update(result: list)
+            Update the list of available words based on the
+            last result
+
+        get_suggestion()
+            Suggests the best word to play next given the
+            currently available words
+        """
 
     # ====================
     def __init__(self):
@@ -43,24 +64,20 @@ class WordleGame:
 
     # ====================
     def get_suggestion(self):
-        """Suggest the best word to guess given the currently available
+        """Suggest the best word to play next given the currently available
         words"""
 
-        # Count occurences of each letter in each position
-        position_letter_counts = {i: {letter: 0
-                                      for letter in string.ascii_letters}
-                                  for i in range(5)}
-        for word in self.available_words:
-            for i in range(5):
-                position_letter_counts[i][word[i]] += 1
-
-        # Calculate probabilities of each letter in each position
-        num_words = len(self.available_words)
-        position_letter_probabilities = {
-            i: {letter: count/num_words
-                for letter, count in position_letter_counts[i].items()}
+        # Count occurences of each letter in each position among the
+        # available words
+        position_letter_counts = {
+            i: Counter([word[i] for word in self.available_words])
             for i in range(5)
         }
+
+        # Note: A previous iteration of this method divided each count by
+        # the total number of words to get probabilities that sum to 1, but
+        # since the total number of words does not change this step does not
+        # make a difference so has been removed.
 
         # Only suggest words with repeated letters if there are no other
         # options
@@ -69,13 +86,14 @@ class WordleGame:
         if not words:
             words = self.available_words
 
-        # Get sum of probabilities for each word
-        word_probabilities = [(sum([position_letter_probabilities[i][letter]
-                                    for i, letter in enumerate(list(word))]),
-                               word)
-                              for word in words]
-
-        _, suggestion = max(word_probabilities)
+        # Get sum of counts for each word
+        word_probabilities = [
+            sum([position_letter_counts[i][letter]
+                 for i, letter in enumerate(list(word))])
+            for word in words
+        ]
+        # Get word with highest total count
+        _, suggestion = max(zip(word_probabilities, words))
         # Remember the word suggested for the next update
         self.prev_guess = suggestion
         return suggestion

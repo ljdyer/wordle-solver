@@ -1,11 +1,18 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-from time import sleep
-from wordle_solver import WordleGame
+"""
+wordle_controller.py
+
+Defines a class WordleController for playing Wordle by manipulating
+a browser window with selenium.
+"""
+
 import atexit
+from time import sleep
+
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 WORDLE_HOME = 'https://www.nytimes.com/games/wordle/index.html'
 ENTER_KEY = '↵'
@@ -15,6 +22,16 @@ DEFAULT_WAIT_AFTER_ENTER_WORD = 2.5
 
 
 class WordleController:
+    """
+    A class to represent a browser window that is displaying the Wordle
+    website.
+
+    Method called directly by play_wordle.py:
+
+        guess_word(word: str) -> list
+            Enters a word into the game board and returns the result as
+            a list of strings ('correct', 'present' or 'absent')
+    """
 
     # ====================
     def __init__(self,
@@ -65,8 +82,8 @@ class WordleController:
                                                   ACCEPT_COOKIES_XPATH)))
                 .click())
         except TimeoutException:
-            # It's possible the cookies dialogue wasn't display, so move on for
-            # now
+            # It's possible the cookies dialogue wasn't displayed, so move on
+            # for now
             pass
 
     # ====================
@@ -168,20 +185,3 @@ class WordleController:
 
         self.driver.quit()
         print('Driver terminated.')
-
-
-# ====================
-if __name__ == "__main__":
-
-    wordle_controller = WordleController()
-    this_game = WordleGame()
-    # Pause for a moment before beginning
-    sleep(1)
-
-    while not wordle_controller.completed:
-        suggestion = this_game.get_suggestion()
-        result = wordle_controller.guess_word(suggestion)
-        this_game.update(result)
-
-    # Give the user some time to admire the result
-    sleep(10)
