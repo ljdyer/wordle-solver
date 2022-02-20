@@ -21,7 +21,7 @@ from wordle_solver import WordleGame
 WAIT_BEFORE = 1
 # Number of seconds to wait after completing the game before closing the
 # browser window
-WAIT_AFTER = 20
+WAIT_AFTER = 60
 
 
 # ====================
