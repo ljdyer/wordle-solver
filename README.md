@@ -29,4 +29,4 @@ Wordle Wizard came about when I was learning the selenium library in Python and 
 
 The other part of the program is the algorithm for coming up with 'best' guesses each time based on the words currently available. This is implemented in the WordleGame class in [wordle_solver.py](wordle_wizard/wordle_solver.py). The algorithm is simply my best attempt at an efficient Wordle strategy and I created any rigourous tests or proofs to demonstrate that it is optimal, so I would welcome and feedback or suggestions for improvements.
 
-The two classes interact with each other in the main program, [play_wordle.py](play_wordle.py).
+The two classes interact with each other in the main program, [play_wordle.py](wordle_wizard_play_wordle.py).
