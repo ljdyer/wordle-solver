@@ -14,7 +14,7 @@ Those with Python and Chrome installed on their computers can run the program as
 
 1. Clone this repo
 2. Get the appropriate version of ChromeDriver for https://chromedriver.chromium.org/downloads and place the chromedriver.exe executable in the wordle_wizard directory.
-3. Install the requirements in requirements.txt.
+3. Install the requirements in [requirements.txt](wordle_wizard/requirements.txt).
 ```
 pip install -r requirements.txt
 ```
@@ -25,8 +25,8 @@ python play_wordle.py
 
 ## How it works/background to the project
 
-Wordle Wizard came about when I was learning the selenium library in Python and started thinking of fun things to try doing with it. The code for manipulating the browser using selenium is in the WordleController class in the wordle_controller.py module.
+Wordle Wizard came about when I was learning the selenium library in Python and started thinking of fun things to try doing with it. The code for manipulating the browser using selenium is in the WordleController class in [wordle_controller.py](wordle_wizard/wordle_controller.py).
 
-The other part of the program is the algorithm for coming up with 'best' guesses each time based on the words currently available. This is implemented in the WordleGame class in wordle_solver.py. The algorithm is simply my best attempt at an efficient Wordle strategy and I created any rigourous tests or proofs to demonstrate that it is optimal, so I would welcome and feedback or suggestions for improvements.
+The other part of the program is the algorithm for coming up with 'best' guesses each time based on the words currently available. This is implemented in the WordleGame class in [wordle_solver.py](wordle_wizard/wordle_solver.py). The algorithm is simply my best attempt at an efficient Wordle strategy and I created any rigourous tests or proofs to demonstrate that it is optimal, so I would welcome and feedback or suggestions for improvements.
 
-The two classes interact with each other in the main program, play_wordle.py.
+The two classes interact with each other in the main program, [play_wordle.py](play_wordle.py).
