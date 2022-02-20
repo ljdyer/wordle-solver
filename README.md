@@ -6,7 +6,7 @@ She doesn't understand English, but has the full list of allowed words memorised
 
 Wordle Wizard is aware that she could cheat if she wanted to—by peeking at the source code on the Wordle site—but she chooses not to and plays just like you and me, by entering her best guesses using the buttons on the site.
 
-Click on the video to her in action:
+Click on the video to see her in action:
 
 <a href="https://www.youtube.com/watch?v=9IM0-dwC2Go"><img src="readme-img/youtube.PNG"></a>
 
