@@ -17,6 +17,8 @@ I'll keep a record of Wordle Wizard's results over the next few days in the tabl
 | Date | Wordle Wizard | Laurence | Video |
 | ------------- | ------------- | ------------- | ------------- |
 | Sunday, 20 Feb 2022  | 4 | 4 | https://www.youtube.com/watch?v=9IM0-dwC2Go
+| Monday, 21 Feb 2022  | 4 | 5 | https://www.youtube.com/watch?v=zUTqfyD5A0M
+
 
 ## How to use
 
@@ -39,6 +41,6 @@ python play_wordle.py
 
 The idea for Wordle Wizard came about when I was learning the selenium library in Python and started thinking of fun things to try doing with it. The code for manipulating the browser using selenium is in the WordleController class in [wordle_controller.py](wordle_wizard/wordle_controller.py).
 
-The other part of the program is the algorithm for coming up with 'best' guesses each time based on the words currently available. This is implemented in the WordleGame class in [wordle_solver.py](wordle_wizard/wordle_solver.py). The algorithm is simply my best attempt at an effective Wordle strategy and I have not verified it is optimal, so I would welcome any feedback or suggestions for improvements.
+The other part of the program is the algorithm for coming up with 'best' guesses each time based on the words currently available. This is implemented in the WordleGame class in [wordle_solver.py](wordle_wizard/wordle_solver.py). This is a naive first attempt and I have realised that it is not optimal—although this was not the original purpose of the project, I will be looking into this more in the coming weeks so stay tuned!
 
 The two classes interact with each other in the main program, [play_wordle.py](wordle_wizard/play_wordle.py).
