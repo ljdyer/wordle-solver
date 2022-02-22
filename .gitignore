@@ -3,3 +3,7 @@
 **/chromedriver.exe
 /archive
 /videos
+/wordle_wizard/algorithm_evaluation.xlsx
+/wordle_wizard/wordle_evaluate.py
+/wordle_wizard/wordle_simulator.py
+/wordle_wizard/wordle_graphs.ipynb

@@ -5,8 +5,8 @@ Defines a class WordleGame that decides which word to guess next in a game
 of Wordle based on probabilities of each letter occuring in each position.
 """
 
+import wordle_strategies
 from words import ALL_WORDS
-from collections import Counter
 
 
 # ====================
@@ -24,10 +24,10 @@ class WordleGame:
         get_suggestion()
             Suggests the best word to play next given the
             currently available words
-        """
+    """
 
     # ====================
-    def __init__(self):
+    def __init__(self, strategy: str = 'letter_position_probs'):
 
         self.available_words = ALL_WORDS
         self.confirmed_letters = "_____"
@@ -35,6 +35,8 @@ class WordleGame:
         self.absent = []
         self.not_in_position = []
         self.prev_guess = None
+        # Get suggestor function from wordle_strategies module
+        self.suggestor = getattr(wordle_strategies, strategy)
 
     # ====================
     def update(self, result: list):
@@ -67,33 +69,7 @@ class WordleGame:
         """Suggest the best word to play next given the currently available
         words"""
 
-        # Count occurences of each letter in each position among the
-        # available words
-        position_letter_counts = {
-            i: Counter([word[i] for word in self.available_words])
-            for i in range(5)
-        }
-
-        # Note: A previous iteration of this method divided each count by
-        # the total number of words to get probabilities that sum to 1, but
-        # since the total number of words does not change this step does not
-        # make a difference so has been removed.
-
-        # Only suggest words with repeated letters if there are no other
-        # options
-        words = [word for word in self.available_words
-                 if no_repeated_letters(word)]
-        if not words:
-            words = self.available_words
-
-        # Get sum of counts for each word
-        word_probabilities = [
-            sum([position_letter_counts[i][letter]
-                 for i, letter in enumerate(list(word))])
-            for word in words
-        ]
-        # Get word with highest total count
-        _, suggestion = max(zip(word_probabilities, words))
+        suggestion = self.suggestor(self.available_words)
         # Remember the word suggested for the next update
         self.prev_guess = suggestion
         return suggestion
@@ -144,10 +120,3 @@ def does_not_contain_in_position(word: str,
 
     return all([word[position] != letter
                 for letter, position in letters_and_positions])
-
-
-# ====================
-def no_repeated_letters(word: str) -> bool:
-    """Return True only if no letter appears more than once in the word"""
-
-    return all([word.count(letter) < 2 for letter in word])
