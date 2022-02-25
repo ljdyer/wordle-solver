@@ -54,10 +54,19 @@ The original purpose of the project was just to practice selenium by controlling
 #### Strategy 1: Maximise sum of probabilities of letters in positions, avoid repeated letters
 
 - Starting word: cares
-- Highest number of guesses: 12 for word 'eater'
-
+- Highest number of guesses: 12 for word 'eater'  
 cares ⇒  taker ⇒  water ⇒  pater ⇒  oater ⇒  mater ⇒  later ⇒  hater ⇒  gater ⇒  dater ⇒  rater ⇒  eater
 - Mean: 4.39 guesses
 - Standard deviation: 1.21 guesses
 
 <img src="wordle_wizard/evaluate/strategy_1.png"></img>
+
+#### Strategy 2: Maximise sum of probabilities of letters regardless of position, avoid repeated letters
+
+- Starting word: soare
+- Highest number of guesses: 12 for word 'tight'  
+soare ⇒  unity ⇒  gitch ⇒  wight ⇒  pight ⇒  might ⇒  light ⇒  kight ⇒  fight ⇒  dight ⇒  bight ⇒  tight
+- Mean: 4.50 guesses
+- Standard deviation: 1.30 guesses
+
+<img src="wordle_wizard/evaluate/strategy_2.png">

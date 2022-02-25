@@ -4,10 +4,10 @@ wordle_evaluate.py
 Evaluate Wordle-solving algorithms.
 """
 
-from os.path import join
+import argparse
 from collections import Counter
+from os.path import join
 
-import pandas as pd
 import matplotlib.pyplot as plt
 import numpy
 from tqdm import tqdm
@@ -19,6 +19,21 @@ from words import USED_WORDS
 
 RESULTS_JSON = 'evaluate/eval_results.json'
 SAVE_FOLDER = 'evaluate'
+
+
+# ====================
+def get_args():
+    """Get command-line arguments"""
+
+    parser = argparse.ArgumentParser(
+        description='Evaluate a Wordle strategy',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('strategy',
+                        metavar='strategy',
+                        type=str,
+                        help='The strategy to evaluate')
+    return parser.parse_args()
+
 
 # ====================
 def order_counter(counter: Counter) -> dict:
@@ -56,7 +71,7 @@ def get_strategy_result(strategy: str):
 
     # Get numbers of guesses for all words and word that takes maximum
     # number of guesses
-    print('Getting numbers of guesses for {strategy} strategy.')
+    print(f'Getting numbers of guesses for {strategy}.')
     max_guesses = 0
     max_word = None
 
@@ -116,11 +131,24 @@ def display_strategy_info(strategy: str, strategy_info: dict):
     plt.show()
 
 
+# ====================
+def evaluate_strategy(strategy: str):
+
+    results = load_settings(RESULTS_JSON)
+    results[strategy] = get_strategy_result(strategy)
+    save_settings(results, RESULTS_JSON)
+    display_strategy_info(strategy, results[strategy])
+
+
+# ====================
+def main():
+
+    args = get_args()
+    strategy = args.strategy
+    evaluate_strategy(strategy)
+
 
 # ====================
 if __name__ == "__main__":
 
-    results = load_settings(RESULTS_JSON)
-    # results['strategy_1'] = get_strategy_result('strategy_1')
-    # save_settings(results, RESULTS_JSON)
-    display_strategy_info('strategy_1', results['strategy_1'])
+    main()
