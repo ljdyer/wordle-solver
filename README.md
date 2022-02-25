@@ -20,6 +20,7 @@ I'll keep a record of Wordle Wizard's results over the next few days in the tabl
 | Monday, 21 Feb 2022  | 4 | 5 | https://www.youtube.com/watch?v=zUTqfyD5A0M
 | Tuesday, 22 Feb 2022 | 3 | 4 | https://www.youtube.com/watch?v=esiAA5-JRNc
 | Thursday, 24 Feb 2022 | 3 | 4 | https://www.youtube.com/watch?v=_2NqWFJaOko
+| Friday, 25 Feb 2022 | 4 | 6 | https://www.youtube.com/watch?v=4bKol7JxIfs
 
 ## How to use
 
