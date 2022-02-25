@@ -15,7 +15,7 @@ Running play_wordle.py from the terminal calls play_wordle()
 from time import sleep
 
 from wordle_controller import WordleController
-from wordle_solver import WordleGame
+from wordle_solver import WordleSolver
 
 # Number of seconds to wait before loading the page after opening comment
 WAIT_BEFORE_BROWSER_OPEN = 1
@@ -35,7 +35,7 @@ def play_wordle():
     sleep(WAIT_BEFORE_BROWSER_OPEN)
 
     wordle_controller = WordleController()
-    this_game = WordleGame()
+    this_game = WordleSolver()
     # Pause for a moment before beginning
     sleep(WAIT_BEFORE_GAME_PLAY)
 

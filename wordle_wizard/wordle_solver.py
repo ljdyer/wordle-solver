@@ -1,7 +1,7 @@
 """
 wordle_solver.py
 
-Defines a class WordleGame that decides which word to guess next in a game
+Defines a class WordleSolver that decides which word to guess next in a game
 of Wordle based on probabilities of each letter occuring in each position.
 """
 
@@ -10,7 +10,7 @@ from words import ALL_WORDS
 
 
 # ====================
-class WordleGame:
+class WordleSolver:
 
     """
     A class to represent a smart AI playing a game of Wordle.
@@ -27,7 +27,7 @@ class WordleGame:
     """
 
     # ====================
-    def __init__(self, strategy: str = 'letter_position_probs'):
+    def __init__(self, strategy: str = 'strategy_1'):
 
         self.available_words = ALL_WORDS
         self.confirmed_letters = "_____"
