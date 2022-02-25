@@ -58,4 +58,4 @@ cares ⇒  taker ⇒  water ⇒  pater ⇒  oater ⇒  mater ⇒  later ⇒  hat
 - Mean: 4.39 guesses
 - Standard deviation: 1.21 guesses
 
-<img src="evaluate/strategy_1.png"></img>
+<img src="wordle_wizard/evaluate/strategy_1.png"></img>
