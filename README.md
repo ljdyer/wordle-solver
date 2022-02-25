@@ -54,6 +54,7 @@ The original purpose of the project was just to practice selenium by controlling
 
 - Starting word: cares
 - Highest number of guesses: 12 for word 'eater'
+
 cares ⇒  taker ⇒  water ⇒  pater ⇒  oater ⇒  mater ⇒  later ⇒  hater ⇒  gater ⇒  dater ⇒  rater ⇒  eater
 - Mean: 4.39 guesses
 - Standard deviation: 1.21 guesses
