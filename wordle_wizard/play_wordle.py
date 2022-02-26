@@ -62,9 +62,9 @@ def display_closing_comment(num_guesses):
         print('Got it in 3. Solid performance.')
     if num_guesses == 4:
         print("Got it in 4. Not bad, but I know I'll do better tomorrow.")
-    if num_guesses > 5:
+    if num_guesses >= 5:
         print(f"Hmm... it took me {num_guesses} attempts.",
-              "Well, it still took me a lot less time than you!")
+              "Well, I was still quicker than you!")
 
 
 # ====================

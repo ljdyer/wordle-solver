@@ -32,6 +32,11 @@ def get_args():
                         metavar='strategy',
                         type=str,
                         help='The strategy to evaluate')
+    parser.add_argument('-d', '--display-only',
+                        dest='display_only',
+                        action='store_true',
+                        help=('Display previously stored information about the strategy,',
+                              'without calculating numbers of guesses required again.'))
     return parser.parse_args()
 
 
@@ -118,6 +123,11 @@ def display_strategy_info(strategy: str, strategy_info: dict):
                                 'num_guess_frequencies'].items():
         all_num_guesses.extend([int(num_guesses)] * frequency)
 
+    # Win rate
+    win = len([num_guesses for num_guesses in all_num_guesses
+               if num_guesses <= 6])
+    print(f"- Win rate: {(win/len(all_num_guesses))*100:.2f}%")
+
     # Mean and standard deviation
     print(f"- Mean: {numpy.mean(all_num_guesses):.2f} guesses")
     print(f"- Standard deviation: {numpy.std(all_num_guesses):.2f} guesses")
@@ -132,20 +142,19 @@ def display_strategy_info(strategy: str, strategy_info: dict):
 
 
 # ====================
-def evaluate_strategy(strategy: str):
-
-    results = load_settings(RESULTS_JSON)
-    results[strategy] = get_strategy_result(strategy)
-    save_settings(results, RESULTS_JSON)
-    display_strategy_info(strategy, results[strategy])
-
-
-# ====================
 def main():
 
+    # Get command line arguments
     args = get_args()
     strategy = args.strategy
-    evaluate_strategy(strategy)
+    display_only = args.display_only
+    # Get peviously stored results
+    results = load_settings(RESULTS_JSON)
+
+    if not display_only:
+        results[strategy] = get_strategy_result(strategy)
+    display_strategy_info(strategy, results[strategy])
+    save_settings(results, RESULTS_JSON)
 
 
 # ====================

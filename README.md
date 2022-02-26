@@ -21,6 +21,7 @@ I'll keep a record of Wordle Wizard's results over the next few days in the tabl
 | Tuesday, 22 Feb 2022 | 3 | 4 | https://www.youtube.com/watch?v=esiAA5-JRNc
 | Thursday, 24 Feb 2022 | 3 | 4 | https://www.youtube.com/watch?v=_2NqWFJaOko
 | Friday, 25 Feb 2022 | 4 | 6 | https://www.youtube.com/watch?v=4bKol7JxIfs
+| Saturday, 26 Feb 2022 | 5 | 4 | https://www.youtube.com/watch?v=B2aKUmbFEnY
 
 ## How to use
 
@@ -49,19 +50,24 @@ The idea for Wordle Wizard came about when I was learning the selenium library i
 
 The WordleSolver class is implemented in [wordle_solver.py](wordle_wizard/wordle_solver.py). It receives information about the feedback received from the game through the `update` method and uses this to track the game state and update the list of words available for the next guess, based on which it suggests the next word to play when called to by the `get_suggestion` method.
 
-The original purpose of the project was just to practice selenium by controlling the Wordle website, so I did not put a lot of effort into the solving algorithm in the first instance, but became interested in improving Wordle Wizard's strategy after noticing that she did not perform much better than a human player. I added the an option to change the `strategy` as a parameter to the `__init__` method of the WordleSolver class and moved the business-end code for the `get_suggestion` method to a new module, [wordle_strategies](wordle_wizard/wordle_strategies.py). I also defined a new class, WordleSimulator, for playing the game with my own choice of starting word without opening the website, in [wordle_simulator.py](wordle_wizard/wordle_simulator.py), and wrote the code to collect and display information about each strategy in [wordle_evaluate.py](wordle_wizard/wordle_evaluate.py). I will post information about different strategies over the coming days.
+The original purpose of the project was just to practice selenium by controlling the Wordle website, so I did not put a lot of effort into the solving algorithm in the first instance, but became interested in improving Wordle Wizard's strategy after noticing that she did not perform much better than a human player. I added the an option to change the `strategy` as a parameter to the `__init__` method of the WordleSolver class and moved the business-end code for the `get_suggestion` method to a new module, [wordle_strategies](wordle_wizard/wordle_strategies.py). I also defined a new class, WordleSimulator, for playing the game with my own choice of starting word without opening the website, in [wordle_simulator.py](wordle_wizard/wordle_simulator.py), and wrote the code to collect and display information about each strategy in [wordle_evaluate.py](wordle_wizard/wordle_evaluate.py).
 
 #### Strategy 1: Maximise sum of probabilities of letters in positions, avoid repeated letters
+
+My original strategy was to find the probability of each letter occuring in each of the five positions based on frequencies among the remaining available words at each stage, sum these for each of the available words, and suggest the word for which the sum of the probabilities is the highest. Words with repeated letters (e.g. 'still', 'seven') are only suggested when there are no other words available, as they they give less information to go on for the next round. This strategy is reasonably reliable, producing a winning result for around 95% of words, but underperforms compared to humans for some words.
 
 - Starting word: cares
 - Highest number of guesses: 12 for word 'eater'  
 cares ⇒  taker ⇒  water ⇒  pater ⇒  oater ⇒  mater ⇒  later ⇒  hater ⇒  gater ⇒  dater ⇒  rater ⇒  eater
+- Win rate: 94.76%
 - Mean: 4.39 guesses
 - Standard deviation: 1.21 guesses
 
 <img src="wordle_wizard/evaluate/strategy_1.png"></img>
 
 #### Strategy 2: Maximise sum of probabilities of letters regardless of position, avoid repeated letters
+
+An alternative strategy 
 
 - Starting word: soare
 - Highest number of guesses: 12 for word 'tight'  
