@@ -3,3 +3,4 @@
 **/chromedriver.exe
 /archive
 /videos
+**/word_freqs

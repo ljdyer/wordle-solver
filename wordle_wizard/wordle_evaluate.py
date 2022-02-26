@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import numpy
 from tqdm import tqdm
 
-from helper.json_helper import load_settings, save_settings
+from helper.json_helper import load_json, save_json
 from wordle_simulator import WordleSimulator
 from wordle_solver import WordleSolver
 from words import USED_WORDS
@@ -149,12 +149,12 @@ def main():
     strategy = args.strategy
     display_only = args.display_only
     # Get peviously stored results
-    results = load_settings(RESULTS_JSON)
+    results = load_json(RESULTS_JSON)
 
     if not display_only:
         results[strategy] = get_strategy_result(strategy)
     display_strategy_info(strategy, results[strategy])
-    save_settings(results, RESULTS_JSON)
+    save_json(results, RESULTS_JSON)
 
 
 # ====================

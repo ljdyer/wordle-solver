@@ -54,7 +54,7 @@ The original purpose of the project was just to practice selenium by controlling
 
 #### Strategy 1: Maximise sum of probabilities of letters in positions, avoid repeated letters
 
-My original strategy was to find the probability of each letter occuring in each of the five positions based on frequencies among the remaining available words at each stage, sum these for each of the available words, and suggest the word for which the sum of the probabilities is the highest. Words with repeated letters (e.g. 'still', 'seven') are only suggested when there are no other words available, as they they give less information to go on for the next round. This strategy is reasonably reliable, producing a winning result for around 95% of words, but underperforms compared to humans for some words.
+My original strategy was to find the probability of each letter occuring in each of the five positions based on frequencies among the remaining available words at each stage, sum these for each of the available words, and suggest the word for which the sum of the probabilities is the highest. Words with repeated letters (e.g. 'still', 'seven') are only suggested when there are no other words available, as they they give less information to go on for the next round. This strategy is reasonably reliable, producing a winning result for around 95% of words, but underperforms compared to humans for many words.
 
 - Starting word: cares
 - Highest number of guesses: 12 for word 'eater'  
@@ -67,12 +67,17 @@ cares ⇒  taker ⇒  water ⇒  pater ⇒  oater ⇒  mater ⇒  later ⇒  hat
 
 #### Strategy 2: Maximise sum of probabilities of letters regardless of position, avoid repeated letters
 
-An alternative strategy 
+An alternative strategy is to look only at the overall probability of each letter, regardless of position. This way we are likely to lock in more letters in the first few guesses, though they are less likely to be in the correct position. It turns out that this strategy is actually slightly weaker than Strategy 1.
 
 - Starting word: soare
 - Highest number of guesses: 12 for word 'tight'  
 soare ⇒  unity ⇒  gitch ⇒  wight ⇒  pight ⇒  might ⇒  light ⇒  kight ⇒  fight ⇒  dight ⇒  bight ⇒  tight
+- Win rate: 92.59%
 - Mean: 4.50 guesses
 - Standard deviation: 1.30 guesses
 
 <img src="wordle_wizard/evaluate/strategy_2.png">
+<!-- 
+#### Strategy 3: Maximise sum of probabilities of letters in positions, avoid repeated letters, and give a x1.5 reward to words in the top 10,000 words
+
+https://norvig.com/ngrams/count_1w.txt -->
