@@ -4,7 +4,6 @@ wordle_simulator.py
 Simulate a Wordle game in order to test Wordle-solving algorithms.
 """
 
-from wordle_solver import WordleSolver
 
 class WordleSimulator:
 

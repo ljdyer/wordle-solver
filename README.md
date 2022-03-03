@@ -12,7 +12,7 @@ Click on the video below to see her in action:
 
 ## Results
 
-I'll keep a record of Wordle Wizard's results over the next few days in the table below, so check back if you want to see how she gets on!
+I'll continue to post new videos and results every now and then, so check back in to see how she's getting on!
 
 | Date | Wordle Wizard | Laurence | Video |
 | ------------- | ------------- | ------------- | ------------- |
@@ -22,6 +22,7 @@ I'll keep a record of Wordle Wizard's results over the next few days in the tabl
 | Thursday, 24 Feb 2022 | 3 | 4 | https://www.youtube.com/watch?v=_2NqWFJaOko
 | Friday, 25 Feb 2022 | 4 | 6 | https://www.youtube.com/watch?v=4bKol7JxIfs
 | Saturday, 26 Feb 2022 | 5 | 4 | https://www.youtube.com/watch?v=B2aKUmbFEnY
+| Thursday, 3 Mar 2022 | 3 | 3 | https://www.youtube.com/watch?v=8HOjMiAth9o
 
 ## How to use
 

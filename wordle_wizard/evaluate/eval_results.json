@@ -32,5 +32,21 @@
             "9": 13
         },
         "starting_word": "soare"
+    },
+    "strategy_3": {
+        "max_word": "eater",
+        "num_guess_frequencies": {
+            "2": 63,
+            "3": 433,
+            "4": 786,
+            "5": 609,
+            "6": 261,
+            "7": 109,
+            "8": 31,
+            "9": 13,
+            "10": 2,
+            "11": 2
+        },
+        "starting_word": "wines"
     }
 }

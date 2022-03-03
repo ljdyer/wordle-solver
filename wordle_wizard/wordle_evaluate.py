@@ -35,8 +35,9 @@ def get_args():
     parser.add_argument('-d', '--display-only',
                         dest='display_only',
                         action='store_true',
-                        help=('Display previously stored information about the strategy,',
-                              'without calculating numbers of guesses required again.'))
+                        help=('Display previously stored information about',
+                              'the strategy without recalculating numbers',
+                              'of guesses required.'))
     return parser.parse_args()
 
 
